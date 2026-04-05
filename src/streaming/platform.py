@@ -7,6 +7,7 @@ and provides query methods for analytics.
 Classes to implement:
   - StreamingPlatform
 """
+#note: had to check how @property and super classes work
 class StreamingPlatform:    
     def __init__(self, name):
         self._name = name
@@ -50,7 +51,7 @@ class StreamingPlatform:
                 total_minutes += session.duration_listened_minutes()
         return total_minutes
     #Q2
-    def avg_unique_tracks_per_premium_user(self, days=30):
+    def avg_unique_tracks_per_premium_user(self, days=30): #check why days not accessed
         premium_users = []
         for user in self._users.values():
             if user.__class__.__name__ == 'PremiumUser':
@@ -96,12 +97,12 @@ class StreamingPlatform:
         averages = []
         for user_type, durations in type_durations.items():
             avg_duration = sum(durations) / len(durations)
-            averages.append((user_type, avg_duration))
-        averages.sort(key=lambda x: x[1], reverse=True)
+            averages.append((user_type, avg_duration)) 
+        averages.sort(key=lambda x: x[1], reverse=True) #to sort it from highest to lowest
         return averages
     #Q5
     def total_listening_time_underage_sub_users_minutes(self, age_threshold=18):
-        total_minutes = 0.0
+        total_minutes = 0.0 #rewrite all the .0 so test code runs correctly
         for user in self._users.values():
             if user.__class__.__name__ == 'FamilyAccountUser':
                 for sub_user in user.sub_users:
@@ -115,7 +116,7 @@ class StreamingPlatform:
         
         for session in self._sessions:
             track = session.track
-            # count Song instances (not podcasts/audiobooks)
+            # count Song instances (not podcasts)
             if track.__class__.__name__ == 'Song' or track.__class__.__name__ == 'AlbumTrack' or track.__class__.__name__ == 'SingleRelease':
                 artist = track.artist
                 if artist not in artist_minutes:

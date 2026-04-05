@@ -37,7 +37,7 @@ Classes to implement:
 """
 
 class User:
-    def __init__(self, user_id:str, name:str, age:int):
+    def __init__(self, user_id:str, name:str, age:int): #had to check with AI if i have to specify if it is str,int etc.. inside the init
         self.user_id = user_id
         self.name = name
         self.age = age
@@ -52,7 +52,7 @@ class User:
         return {session.track.track_id for session in self.sessions}
 class FreeUser(User):
     MAX_SKIPS_PER_HOUR = 6
-    def __init__(self, user_id:str, name:str, age:int):
+    def __init__(self, user_id:str, name:str, age:int): 
         super().__init__(user_id, name, age)
         self.skips_this_hour = 0
 class PremiumUser(User):
