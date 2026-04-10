@@ -37,7 +37,7 @@ Classes to implement:
 """
 
 class User:
-    def __init__(self, user_id:str, name:str, age:int): #had to check with AI if i have to specify if it is str,int etc.. inside the init
+    def __init__(self, user_id:str, name:str, age:int): #had to check how super() works
         self.user_id = user_id
         self.name = name
         self.age = age
