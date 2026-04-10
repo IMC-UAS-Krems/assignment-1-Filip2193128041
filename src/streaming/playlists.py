@@ -21,6 +21,7 @@ class Playlist:
                 return
     def total_duration_seconds(self):
         return sum(track.duration_seconds for track in self.tracks)
+
 class CollaborativePlaylist(Playlist):
     def __init__(self, playlist_id, title, owner, **kwargs):
         super().__init__(playlist_id, title, owner, **kwargs)
