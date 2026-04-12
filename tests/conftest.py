@@ -7,7 +7,7 @@ Shared pytest fixtures used by both the public and private test suites.
 """
 Note for reviewer: added a test for avg_unique_tracks_per_premium_user (unique traacks)
 then for trackwithmostlisteners to return most listeners 
-avgsessiondurbyusertype to return expected list of avg
+avgsessiondurbyusertype to return expected list of
 
 """
 
@@ -53,10 +53,9 @@ def platform() -> StreamingPlatform:
     # Albums & AlbumTracks
     # ------------------------------------------------------------------
     dd = Album("alb1", "Digital Dreams", artist=pixels, release_year=2022)
-    t1 = AlbumTrack("t1", "Pixel Grain",      180, "pop",  pixels, track_number=1)
-    t2 = AlbumTrack("t2", "Griddy Bob",  210, "pop",  pixels, track_number=2)
-    t3 = AlbumTrack("t3", "Drake TheGoat",   195, "pop",  pixels, track_number=3)
-    t4= AlbumTrack("t4","Michael Jackson", 192, "classical", pixels,)
+    t1 = AlbumTrack("t1", "Pixel Rain",      180, "pop",  pixels, track_number=1)
+    t2 = AlbumTrack("t2", "Grid Horizon",    210, "pop",  pixels, track_number=2)
+    t3 = AlbumTrack("t3", "Vector Fields",   195, "pop",  pixels, track_number=3)
     for track in (t1, t2, t3):
         dd.add_track(track)
         platform.add_track(track)
