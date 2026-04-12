@@ -212,6 +212,7 @@ class StreamingPlatform:
         collab_counter = 0
         collab_tracks = 0
         playlist_counter=0
+        extra_count= 0
 
         for playlist in self._playlists.values():
             if playlist.__class__.__name__=="Playlist":
