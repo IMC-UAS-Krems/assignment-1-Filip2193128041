@@ -93,7 +93,9 @@ class TestAvgUniqueTracksPremium:
     #       average for premium users. You'll need to count unique tracks
     #       per premium user and calculate the average.
     def test_correct_value(self, platform: StreamingPlatform) -> None:
-        pass
+        result = platform.avg_unique_tracks_per_premium_user(days=30)
+        expected = 1/2
+        assert result == pytest.approx(expected)
 
 
 # ===========================================================================
@@ -117,8 +119,8 @@ class TestTrackMostDistinctListeners:
     # TODO: Add a test that verifies the correct track is returned.
     #       Count listeners per track from the fixture data.
     def test_correct_track(self, platform: StreamingPlatform) -> None:
-        pass
-
+        result = platform.track_with_most_distinct_listeners()
+        assert result == platform.get_track("t1")
 
 # ===========================================================================
 # Q4 - Average session duration per user subtype, ranked
@@ -149,8 +151,8 @@ class TestAvgSessionDurationByType:
 
     # TODO: Add tests to verify all user types are present and have correct averages.
     def test_all_user_types_present(self, platform: StreamingPlatform) -> None:
-        pass
-
+        result = platform.avg_session_duration_by_user_type()
+        assert result == [('FreeUser',360.0),('FamilyAccountUser',195.0),('PremiumUser',180.0)]
 
 # ===========================================================================
 # Q5 - Total listening time for underage sub-users

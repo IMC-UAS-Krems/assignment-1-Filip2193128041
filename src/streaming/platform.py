@@ -82,15 +82,14 @@ class StreamingPlatform:
             unique_tracks = set()
             for session in user.sessions:
                 #check if session is in those days
-                if session.date >= cutoff_date:
+                if session.timestamp >= cutoff_date:
                     unique_tracks.add(session.track.track_id)
 
             total_unique_tracks += len(unique_tracks)
-        return total_unique_tracks / len(premium_users)
+        return round(total_unique_tracks / len(premium_users),2)
 
     #Q3
     def track_with_most_distinct_listeners(self):
-        #make a loop if id is not in listeners!!!!
         track_listeners = {}
         for session in self._sessions:
             track_id = session.track.track_id
@@ -98,14 +97,17 @@ class StreamingPlatform:
             if track_id not in track_listeners:
                 track_listeners[track_id] = set()
             track_listeners[track_id].add(user_id)
+        
         if not track_listeners:
             return None
+        
         max_listeners = 0
         most_popular_track_id = None
         for track_id, listeners in track_listeners.items():
             if len(listeners) > max_listeners:
                 max_listeners = len(listeners)
                 most_popular_track_id = track_id
+        
         return self._catalogue.get(most_popular_track_id)
 
     #Q4
