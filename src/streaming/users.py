@@ -55,10 +55,9 @@ class User:
     def unique_tracks_listened(self):
         return {session.track.track_id for session in self.sessions}
 class FreeUser(User):
-    MAX_SKIPS_PER_HOUR = 6
     def __init__(self, user_id:str, name:str, age:int): 
         super().__init__(user_id, name, age)
-        self.skips_this_hour = 0
+        self.MAX_SKIPS_PER_HOUR= 6
         
 class PremiumUser(User):
     def __init__(self, user_id:str, name:str, age:int, subscription_start:str):

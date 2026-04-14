@@ -7,6 +7,11 @@ and provides query methods for analytics.
 Classes to implement:
   - StreamingPlatform
 """
+
+"""
+Made a base StreamingPlatform class with functions coded below + the 10 queries (Q1-Q10) according to the test_public file. (0 errors)
+"""
+
 from datetime import datetime, timedelta
 from .users import PremiumUser, User
 from .tracks import Song
@@ -58,8 +63,8 @@ class StreamingPlatform:
     def all_tracks(self):
         return list(self._catalogue.values())
     
-    #Q1
-    def total_listening_time_minutes(self, start, end):
+    #Q1 - function to get the total minutes a person listened
+    def total_listening_time_minutes(self, start, end): 
         total_minutes = 0.0
         for session in self._sessions:
             if start <= session.timestamp <= end:
@@ -93,9 +98,9 @@ class StreamingPlatform:
         track_listeners = {}
         for session in self._sessions:
             track_id = session.track.track_id
-            user_id = session.user.user_id
+            user_id = session.user.user_id # fix indentation in for loop , note
             if track_id not in track_listeners:
-                track_listeners[track_id] = set()
+                track_listeners[track_id] = set() 
             track_listeners[track_id].add(user_id)
         
         if not track_listeners:
@@ -125,7 +130,7 @@ class StreamingPlatform:
             durations = type_durations[user_type]
             average = sum(durations) / len(durations)
             result_list.append((user_type, average))
-        #sort them
+        #sorting algorithm
         for i in range(len(result_list)):
             for j in range(i + 1, len(result_list)):
                 if result_list[i][1] < result_list[j][1]:
@@ -230,21 +235,20 @@ class StreamingPlatform:
         result = []
         
         for user in self._users.values():
-            # Get track IDs
             user_track_ids = set()
             for session in user.sessions:
                 user_track_ids.add(session.track.track_id)
             
             completed_albums = []
             for album in self._albums.values():
-                album_tracks = album.track_ids() if hasattr(album, 'track_ids') else album._tracks
-                if not album_tracks:
-                    continue
-            else:
-                 album_track_ids = set(album_tracks)
-            if album_track_ids.issubset(user_track_ids):
-                    completed_albums.append(album.title)        
-            #add if they finished an album
+             album_tracks = album.track_ids() if hasattr(album, 'track_ids') else album._tracks
+             if not album_tracks:
+                 continue
+             album_track_ids = set(album_tracks)
+             if album_track_ids.issubset(user_track_ids):   #peer review: fix this
+              completed_albums.append(album.title)
+            
             if completed_albums:
                 result.append((user, completed_albums))
+        
         return result

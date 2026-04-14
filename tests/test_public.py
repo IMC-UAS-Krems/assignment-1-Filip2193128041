@@ -180,7 +180,7 @@ class TestUnderageSubUserListening:
 
     # TODO: Add tests for correct values with default and custom thresholds.
     def test_correct_value_default_threshold(self, platform: StreamingPlatform) -> None:
-        pass
+        result = platform.total_listening_time_underage_sub_users_minutes()
 
     def test_custom_threshold(self, platform: StreamingPlatform) -> None:
         pass

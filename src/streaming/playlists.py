@@ -5,6 +5,10 @@
 # Classes to implement:
 #   - Playlist
 #   - CollaborativePlaylist
+
+"""
+A Playlist file with a Playlist class that includes: add_track,remove_track, totaldursecs + CollabPlaylist class
+"""
 class Playlist:
     def __init__(self, playlist_id: str, name: str, owner):
         self.playlist_id = playlist_id

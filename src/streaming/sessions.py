@@ -6,6 +6,10 @@ Implement the ListeningSession class for recording listening events.
 Classes to implement:
   - ListeningSession
 """
+"""
+Added a listeningsession class with attributes and durationlistenedmins
+"""
+
 #
 class ListeningSession:
     def __init__(self,session_id,user,track,daytime,duration_listened_seconds):

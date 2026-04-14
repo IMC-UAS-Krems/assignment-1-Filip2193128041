@@ -11,7 +11,7 @@ class Album:
     def tracks(self):
         return self._tracks
     
-    def add_track(self, track):
+    def add_track(self, track): #simple function to add tracks
         self._tracks.append(track)
         track.album = self  # 
         self._tracks.sort(key=lambda t: t.track_number)  
